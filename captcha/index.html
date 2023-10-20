@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CaptCha</title>
+  <style>
+    #get {
+      display:none;
+    }
+    #time{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <center>
+    <button onclick="req()" id="req">request captcha</button>
+    <div id="get">
+    <h1 id="number"></h1>
+    <h3 id="time"></h3>
+    <input type="number" name="" id="input" placeholder="Isi sesuai angka di atas">
+    </div>
+    <script>
+    let numb = 0
+    let inp = 0
+    let poin = 0
+    let time = 30
+      function req() {
+        let get = document.getElementById('get').style.display='block'
+        let close = document.getElementById('req').style.display='none'
+        make()
+      }
+      function make() {
+        numb = Math.floor(Math.random() * 89999)+ 10000;
+        let number = document.getElementById('number').innerHTML = numb
+      }
+      document.getElementById('input').addEventListener('keydown',function(event){
+       if (event.key == 'Enter'){
+        input()
+      }
+       if (event.key == 'Enter' && poin >= 4){
+        let number = document.getElementById('number').innerHTML = 'maaf bro terlalu banyak mencoba'
+        let input = document.getElementById('input').style.display='none'
+        let tm = document.getElementById('time').style.display='block'
+        time = 30
+        setTimeout(netral, 30000)
+        setInterval(tim, 1000)
+        input = document.getElementById('input').style.color='black'
+        input = document.getElementById('input').placeholder='Isi Kembali'
+      }            
+      })
+      
+      
+      function netral(){
+        poin = 0
+        make()
+        let number = document.getElementById('number').innerHTML = numb
+        let input = document.getElementById('input').style.display='block'
+      }
+      function input(){
+        inp = document.getElementById('input') .value
+        if (inp == numb){
+          window.location.href='halaman_selanjutnya.html'
+          
+        }
+        else {
+          make()
+          let input = document.getElementById('input').value = ''
+          input = document.getElementById('input').placeholder='Isi kembali // nilai salah'
+          input = document.getElementById('input').style.color='red'
+          poin++
+        }
+      } 
+      function tim(){
+        if (time > -1){
+          let rtime = document.getElementById('time') .innerHTML = 'coba lagi dalam ' + time;
+          time -= 1
+        }
+        else{
+          clearInterval(time)
+          let tm = document.getElementById('time').style.display='none'
+        }
+      }
+    </script>
+  </center>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <script>
+    function gunting() {
+      let com = Math.floor(Math.random() * 3) + 1;
+      let p = ('gunting')
+      if (com == 1) {
+    out =('imbang')
+      }
+      if (com == 2) {
+        out =('kalah')
+      }
+      if (com == 3) {
+        out =('menang')
+      }
+      document.getElementById('out') .innerHTML = out;
+    }
+    function batu() {
+      let com = Math.floor(Math.random() * 3) + 1;
+      if (com == 1) {
+        out =('menang')
+      }
+      if (com == 2) {
+        out =('imbang')
+      }
+      if (com == 3) {
+        out =('kalah')
+      }
+      document.getElementById('out') .innerHTML = out;
+    }
+    function kertas() {
+      let com = Math.floor(Math.random() * 3) + 1;
+      if (com == 1) {
+        out =('kalah')
+      }
+      if (com == 2) {
+        out =('menang')
+      }
+      if (com == 3) {
+        out =('imbang')
+      }
+      document.getElementById('out') .innerHTML = out;
+    }
+  </script>
+
+  <button onclick="gunting()">gunting</button>
+  <button onclick="batu()">batu</button>
+  <button onclick="kertas()">kertas</button>
+  <center>
+    <h1 id="out"></h1>
+  </center>
+</body>
+
+</html>

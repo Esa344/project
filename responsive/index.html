@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html id="tes">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+ 
+</head>
+
+<body>
+  <div id="res">
+  <input type="range"  id="number" max="100" style="min-width: innerWidth">
+  <button onclick="respon()"></button>
+  </div>
+  <script>
+  let number = 0
+    function size(){
+    }
+    function respon(){
+      let t = document.getElementById('tes') 
+      let number = document.getElementById('number').value
+      t.style.width=`${number}px`
+       let consol = document.getElementById('number')
+      consol.style.width=`${innerWidth / 2}px`
+      t.style.zoom=`${-number}%`
+
+      size()
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jam kita</title>
+
+  
+</head>
+
+<body id="theme">
+  <center>
+  <div class="tanggal">
+    <h4 id="tanggal">
+  </div>
+  <div class="waktu">
+    <h1 id="waktu">
+  </div>
+  <div class="hari">
+    <h3 id="hari">
+  </div>
+  <h2>
+  <marquee id="teks">
+  </h2>
+  </center> 
+  
+  
+  
+  <script>
+  const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember", ];
+  const namaHari =["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu",]
+  //tulis kata kata
+  const teks = []
+  //Minggu
+  teks[0] = "selamat hari Minggu"
+  //Senin
+  teks[1] = "tetap semangat walau senin"
+  //Selasa 
+  teks[2] = "Selasa nya semangat ya"
+  //Rabu 
+  teks[3] = "rabu tuh harus semangat"
+  //Kamis 
+  teks[4] = "kamis full senyum"
+  //Jumat 
+  teks[5] = "jumat besok libur"
+  //Sabtu 
+  teks[6] = "yes sabtu"
+ 
+  function kalender (){
+    window.requestAnimationFrame(kalender)
+    const kal = new Date()
+    let tanggal = kal.getDate()
+    let bulan = kal.getMonth()
+    let tahun = kal.getFullYear()
+    document.getElementById('tanggal') .innerHTML = tanggal + "  " + namaBulan[bulan] + "  " + tahun
+  }
+  kalender ()
+  function waktu(){
+    window.requestAnimationFrame(waktu)
+    const time = new Date()
+    let jam = time.getHours()
+    let menit = time.getMinutes()
+    let detik = time.getSeconds()
+    document.getElementById('waktu') .innerHTML = jam + " : " + menit + " : " + detik
+  }
+  waktu()
+  function day(){
+    window.requestAnimationFrame(day)
+    const har = new Date()
+    let hari = har.getDay()
+    document.getElementById('hari') .innerHTML = namaHari[hari]
+    document.getElementById('teks') .innerHTML = teks[hari]
+  }
+  day()
+  function theme(){
+    window.requestAnimationFrame(theme)
+    let time = new Date()
+    let jam = time.getHours()
+    if (jam >= 19){
+      let theme = document.getElementById('theme')
+      theme.style.background = '#010000'
+      theme.style.color = 'white'
+    }
+  }
+  theme()
+  </script>
+
+</body>
+
+</html>

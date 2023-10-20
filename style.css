@@ -1,0 +1,21 @@
+html{
+    font-size: 15pt;
+    max-height: 850px;
+    color:black;
+}
+.input{
+  border-radius: 100px;
+  Border-width: 3px;
+  border-color: white;
+  width: 250px;
+  background-color: white;
+}
+.but{
+  border-radius: 100px;
+  background-color: #00CCFF;
+  border-style: none;
+}
+.center{
+  margin : 0 auto;
+  display: inline;
+}

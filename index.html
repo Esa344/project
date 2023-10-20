@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"style="background-color:white;" id="ut">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HTML</title>
+  
+  <style>
+    .se{
+  display: flex ;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+  </style>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="pinggir">
+    <button id="drob"onclick="o()">buka</button>
+   <div id="down" style="position:absolute; background-color:white; display:none;"><button onclick="c()" id="c">mode gelap</button>
+   <button style="display:none;" id="tt" onclick="d()">mode terang</button>
+  </div>
+  
+  <script>
+
+
+  function o(){
+    var drob= document.getElementById("down");
+    drob.style.display="block";
+  }
+  function c(){
+    var c= document.getElementById("down")
+    var ut= document.getElementById("ut")
+    var src= document.getElementById("wiw")
+    var cl= document.getElementById("c");
+    var tt= document.getElementById("tt");
+    c.style.display="none";
+    ut.style.background="gray";
+    ut.style.borderColor="white"
+    ut.style.color="white"
+    src.style.background="gray";
+    cl.style.display="none";
+    tt.style.display="block"
+    
+  }
+  function d(){
+    var c= document.getElementById("down")
+    var ut= document.getElementById("ut")
+    var src= document.getElementById("wiw")
+    var cl= document.getElementById("c");
+    var tt= document.getElementById("tt");
+    c.style.display="none";
+    ut.style.background="white";
+    ut.style.borderColor="black"
+    ut.style.color="black"
+    src.style.background="white";
+    cl.style.display="block";
+    tt.style.display="none"
+    
+  }
+  </script>
+  
+
+<div style="display:block">
+    <div class="se" style="">
+  <div id="tu">
+  <input type="search" name="" id="wiw" var= asu class="input"
+  style="height:"300px"; background:white;">
+  <script src="main.js"></script>
+  <button type="submit" onclick="woke()" class="but">🔎</button>
+  <br>
+
+  </div>
+  </div>
+  <center>
+  <div class="center-text"><h1 id="iya"></h1>
+  </center>
+</div>
+      </div>
+      
+
+  <script>
+    function woke(){
+    var ok = document.getElementById("wiw").value + " anjing";
+    document.getElementById("iya") .innerHTML = ok;
+    var tu= document.getElementById("tu");
+    
+  }
+  </script>
+
+  </div>
+</body>
+</html>

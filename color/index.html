@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>pemilih warna</title>
+  <style>
+    .box{
+      background-color: red;
+      border-radius: 25% 0%;
+      height: 200px;
+      width: 200px; 
+    }
+    .text{
+      padding-top:80px
+    }
+  </style>
+</head>
+
+<body>
+
+
+<center>
+  <input type="color" id="warna">
+    <br>
+  <div id="box" class="box">
+    <h1 id="text" class="text"></h1>
+  </div>
+</center>
+  
+  <script>
+  let color = "#7777"
+  let box ='red'
+  let tes = 'hh'
+    function getc(){
+      window.requestAnimationFrame(getc)
+      color = document.getElementById("warna").value
+      text = document.getElementById("text")
+      box = document.getElementById("box")
+      document.getElementById("text") .innerHTML = color
+      box.style.background = color
+       if (color == "#000000"){
+         text.style.color = "white"
+       }
+       else{
+         text.style.color = "#000000"
+       }
+    }
+    getc()
+  </script>
+
+
+
+</body>
+
+</html>
