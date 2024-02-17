@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    .circel {
+      border: solid;
+      border-radius: 50%;
+      border-width: 15px;
+      height: 300px;
+      width: 300px;
+      margin-top: 200px;
+    }
+    #detik{
+      height: 120px;
+      width: 2px;
+      margin-top: 30px;
+      left: 50%;
+      background-color: red;
+      transform: translatey(-50% -100%);
+      transform-origin: 50% 100%;
+      position: fixed;
+      z-index: 2
+    }
+    #menit{
+      height: 110px;
+      width: 5px;
+      margin-top: 40px;
+      left: 50%;
+      background-color: green;
+      transform: translatey(-50% -100%);
+      transform-origin: 50% 100%;
+      transition: 60s;
+      position: fixed;
+      z-index: 1
+    }   
+  #jam{
+      height: 110px;
+      width: 5px;
+      margin-top: 40px;
+      left: 50%;
+      background-color: blue;
+      transform: translatey(-50% -100%);
+      transform-origin: 50% 100%;
+      transition: 3600s;
+      position: fixed;
+    }    
+  </style>
+</head>
+<body>
+  <center>
+    <div class="circel">
+      <div id="detik"/>
+      <div id="menit"/>
+      <div id="jam"/>
+    </div>
+  </center>
+  <script>
+    let jam;
+    let menit;
+    let detik;
+    function update(){
+      window.requestAnimationFrame(update)
+      const time = new Date()
+      jam = time.getHours() * 30
+      menit = time.getMinutes() * 6
+      detik = time.getSeconds() * 6
+    }
+    update()
+    function rotat(){
+      window.requestAnimationFrame(rotat)
+      document.getElementById('detik').style.transform=`rotate(${detik}deg)`
+      document.getElementById('menit').style.transform=`rotate(${menit}deg)`
+      document.getElementById('jam').style.transform=`rotate(${jam}deg)`
+    }
+    rotat()
+  </script>
+</body>
+
+</html>

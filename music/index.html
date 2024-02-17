@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+  body{
+    margin: 0px;
+  }
+  center{
+    margin-top: 0px;
+    height: 100vh;
+  }
+  center button{
+    margin-top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    border: none;
+  }
+  </style>
+</head>
+
+<body>
+  <center>
+<button onclick="so.play() && hiden()" id="click"></button>
+<h1 id="text"></h1>
+  </center>
+  <script>
+  let detik = 0
+  let ms = 0.00
+  const so = new Audio('katecut.mp3')
+  function hiden(){
+    document.getElementById('click').style.display='none'
+    time()
+  }
+  function time(){
+    detik += 0.01 
+    setTimeout(time, 0.01)
+    out()
+  }
+  function out(){
+      if (detik >= 4.50) {
+        document.getElementById('text').innerHTML = 'Ane Habib Jidan'
+      }
+      if (detik >= 6.89){
+        document.getElementById('text').innerHTML = 'Cicit Mbah Priuk'
+      }
+      if (detik >= 8.59){
+        document.getElementById('text').innerHTML = 'Paling Tampan'
+      }
+      if (detik >= 10.00){
+        document.getElementById('text').innerHTML = 'Jikalau Di Tembak Ga Mempan'
+      }
+      if (detik >= 12.60){
+        document.getElementById('text').innerHTML = 'Wajar Kalau Ente Nyaman'
+      }
+      if (detik >= 15.00) {
+        document.getElementById('text').innerHTML = 'Sekali Sewang'
+      }      
+      if (detik >= 17.20) {
+        document.getElementById('text').innerHTML = 'Kita Hidup'
+      }      
+      if (detik >= 18.50) {
+        document.getElementById('text').innerHTML = 'Masing'
+      }      
+      if (detik >= 19.20) {
+        document.getElementById('text').innerHTML = 'Masing'
+        document.getElementById('text').style.color='red'
+      }      
+      if (detik >= 20.20) {
+        document.getElementById('text').style.color='black'
+        document.getElementById('text').innerHTML = 'Ente Kasih godaan Ane Ga Berpaling'
+      }            
+  }
+  </script>
+</body>
+
+</html>

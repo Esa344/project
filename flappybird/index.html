@@ -1,21 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>flappybird</title>
   <style>
-    #canvas{padding-left: 0px}
+    #canvas {
+      margin-top: 10px
+    }
+
+    body {
+      background-color: lightblue;
+      margin:0px
+    }
+
+    .pause {
+      margin: 0px;
+      position: fixed;
+      display: none;
+      width: 100vw;
+      background-color: rgba(0, 0, 0, 0.4);
+      height: 100vh;
+      align-items: center;
+     justify-content: center;
+    }
+    .panel {
+      position: relative;
+      flex-direction: column;
+      width: 430px;
+    }
+
+    #poin {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      font-weight: bold;
+      font-size: 50px;
+    }
+    #point{
+      font-size: 50px;
+      color: red;
+    }
+    .lanjut{
+      font-size: 70px;
+      color: red;
+    }
   </style>
 </head>
+
 <body>
   <center>
-  <canvas width ="440px" height="700px" id="canvas">
-    
-  </canvas>
+    <div class="pause" id="pause">
+      <div class="panel">
+        <h1>kamu meninggoy <br> poin kamu:</h1>
+        <h1 id="point">0</h1>
+        <h1>silahkan klik di <br> mana saja untuk</h1>
+        <h1 class="lanjut">Lanjut</h1>
+      </div>
+    </div>
+    <div id="poin">0</div>
+    <canvas width="430px" height="700px" id="canvas" />
   </center>
   <script>
+    let posy = 350
+    let touch = 0
+    let speed = 0
+    let rrun = true
+    let nim = 0
+    let posw = [568, 144, 359]
+    let phole = [290, 290, 290]
+    let ud;
+    let fb;
+    let speedw = 0
+    let point = 0
+    let lastw = -1
+    const canvas = document.getElementById('canvas')
+    const c = canvas.getContext('2d')
+    c.fillStyle = 'lightblue'
+    c.fillRect(0, 0, 430, 700);
+    document.getElementById('canvas').addEventListener('click', function(even) {
+      touch = 15
+      rrun = false
+      if (speed == 0) {
+        speed = 3
+        speedw = 1
+      }
+    })
+    document.getElementById('pause').addEventListener('click', function(even)
+    {
+      window.location.href = 'index.html'
+    })
+
+    function fly() {
+      window.requestAnimationFrame(fly)
+      if (touch >= 0) {
+        rrun = false
+        touch -= 1
+        posy += -speed
+      }
+      else {
+        posy += speed
+      }
+      c.fillStyle = 'yellow'
+      c.fillRect(195, posy, 30, 30)
+      if (posy >= 700 || posy <= 0) {
+        speed = 0
+        posy = 320
+        document.getElementById('pause').style.display = 'flex'
+        document.getElementById('poin').style.display = 'none'
+      }
+    }
+
+    function wall() {
+      window.requestAnimationFrame(wall)
+      c.fillStyle = 'gray'
+      c.clearRect(0, 0, 430, 700)
+      c.fillRect(posw[2], 0, 50, 700)
+      c.fillRect(posw[1], 0, 50, 700)
+      c.fillRect(posw[0], 0, 50, 700)
+    }
+
+    function pwal() {
+      window.requestAnimationFrame(pwal)
+      posw[0] -= speedw
+      posw[1] -= speedw
+      posw[2] -= speedw
+      posw[posw.indexOf(-49)] = 600
+    }
+
+    function hole() {
+      window.requestAnimationFrame(hole)
+      c.clearRect(posw[0] + 1, phole[0], 50, 120)
+      c.clearRect(posw[1] + 1, phole[1], 50, 120)
+      c.clearRect(posw[2] + 1, phole[2], 50, 120)
+      phole[posw.indexOf(-48)] = Math.floor(Math.random() * 350) + 175;
+    }
+
+    function elimination() {
+      window.requestAnimationFrame(elimination)
+      document.getElementById('poin').innerHTML = point
+      document.getElementById('point').innerHTML = point
+
+      if (fb = posw.map(element => element <= 225 && element + 50 >= 195)) {
+        ud = fb.indexOf(true)
+        if (ud != -1) {
+          if (posy <= phole[ud] || posy + 30 >= phole[ud] + 120) {
+            posy = 320
+            speedw = 0
+            speed = 0
+            document.getElementById('pause').style.display = 'flex'
+            document.getElementById('poin').style.display = 'none'
+
+          }
+          if (posy >= phole[ud] && posy + 30 <= phole[ud] + 120) {
+            if (lastw != ud) {
+              point++
+              lastw = ud
+            }
+          }
+        }
+      }
+    }
+    wall()
+    pwal()
+    hole()
+    fly()
+    elimination()
   </script>
 </body>
+
 </html>

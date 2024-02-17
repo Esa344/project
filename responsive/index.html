@@ -5,21 +5,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title></title>
- 
+ <style>
+   html, body{
+     overflow: hidden;
+   }
+   .esa{
+     background-color: red;
+     width: 100vw;
+   }
+ </style>
 </head>
 
 <body>
   <div id="res">
-  <input type="range"  id="number" max="100" style="min-width: innerWidth">
+  <input type="range"  id="number" max="1020" style="max-width: innerWidth">
   <button onclick="respon()"></button>
+  <div class="esa">p</div>
   </div>
   <script>
   let number = 0
+  let width;
     function size(){
+      window.requestAnimationFrame(size)
+      width = -innerWidth
     }
+    size()
     function respon(){
       let t = document.getElementById('tes') 
       let number = document.getElementById('number').value
+      document.getElementById('tes').style.zoom=`${width}`
       t.style.width=`${number}px`
        let consol = document.getElementById('number')
       consol.style.width=`${innerWidth / 2}px`

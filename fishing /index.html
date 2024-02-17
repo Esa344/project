@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    body {
+      margin: 0px;
+      background-color: lightblue;
+    }
+    #canvas {
+      height: 99vh;
+      width: 99vw;
+      position: relative
+    }
+    .sea {
+      position: fixed;
+      bottom: 0;
+      height: 50vh;
+      width: 100vw;
+      background-color: blue;
+      opacity: 0.4;
+    }
+    .control {
+      position: fixed;
+      height: 80px;
+      width: 100vw;
+      bottom: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .control button {
+      height: 40px;
+      width: 40px;
+      z-index: 1;
+      background-color: wheat;
+      border-radius: 20px;
+      border: none;
+      font-weight: bolder
+    }
+    .joy {
+      margin-left: 40px;
+    }
+    .strike {
+      margin-right: 20px;
+    }
+    .range {
+      transform: rotate(270deg);
+      margin-bottom: 60px;
+      margin-left: auto;
+    }
+    #point {
+      position: fixed;
+      font-weight: bolder;
+      top: 0;
+      margin-left: 10px
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <canvas id="canvas" height="720px" width="450px"></canvas>
+    <h1 id="point">0</h1>
+    <div class="sea" />
+    <div class="control">
+      <button onclick="back()" class="joy">&lt;</button>
+      <button onclick="front()" class="joy">&gt;</button>
+      <input type="range" class="range" value="0" max="300" id="range">
+      <button onclick="fish()" class="strike" id="fish"></button>
+    </div>
+  </center>
+  <script>
+    let xboat = 50
+    let hstring = 0
+    let st = 0
+    let plus = 1
+    let rang = 0
+    let valst;
+    let fix = []
+    let fiy = []
+    let posfisx = new Array(10).fill(200)
+    let posfisy = new Array(10).fill(500)
+    let ab = 0
+    let korx;
+    let kory;
+    let upn = 1
+    let fcl = 0
+    let point = 0
+
+    const canvas = document.getElementById('canvas');
+    const c = canvas.getContext('2d');
+
+    function front() {
+      c.clearRect(xboat + 60, 360, 1, hstring)
+      xboat += 10
+      boat()
+    }
+    function back() {
+      c.clearRect(xboat + 60, 360, 1, hstring)
+      xboat -= 10
+      boat()
+    }
+    
+    
+    function fish() {
+      c.clearRect(xboat + 60, 350, 1, 360 + hstring + 300)
+      if (st == 1) {
+        st -= 1
+        plus = -1
+        if (hstring !== 0) {
+          hstring -= 1
+          fcl = 0
+        }
+      }
+      else {
+        plus = 1
+        st += 1
+        fcl = 1
+        if (hstring == 0) {
+          hstring += 1
+          upn = 0
+        }
+      }
+      roadfish()
+    }
+    function string() {
+      window.requestAnimationFrame(string)
+      c.clearRect(xboat + 60, 350, 1, hstring)
+      if (hstring !== 300) {
+        if (hstring !== 0) {
+          hstring += plus
+        }
+      }
+      if (valst <= 0) {
+        if (upn != 0) {
+          document.getElementById('range').value = 0
+          hstring = 0
+        }
+        document.getElementById('fish').style.display = 'block'
+        document.getElementById('range').style.display = 'block'
+        document.getElementById('point').innerHTML = point
+      }
+    }
+    
+    
+    function range() {
+      window.requestAnimationFrame(range)
+      rang = document.getElementById('range').value
+      valst = hstring - rang - 1;
+      valst = Math.max(0, valst)
+      hstring = Math.max(0, hstring)
+    }
+    range()
+    string()
+    function roadfish() {
+      window.requestAnimationFrame(roadfish)
+      c.fillStyle = 'black'
+      c.fillRect(xboat + 60, 350, 1, valst)
+    }
+    function boat() {
+      window.requestAnimationFrame(boat)
+      c.clearRect(0, 350, 450, 15)
+      c.fillStyle = 'brown'
+      c.fillRect(xboat, 350, 60, 15)
+    }
+    function firutx() {
+      fix[0] = Math.floor(Math.random() * 6) + -2;
+      fix[1] = Math.floor(Math.random() * 6) + -2;
+      fix[2] = Math.floor(Math.random() * 6) + -2;
+      fix[3] = Math.floor(Math.random() * 6) + -2;
+      fix[4] = Math.floor(Math.random() * 6) + -2;
+      fix[5] = Math.floor(Math.random() * 6) + -3;
+      fix[6] = Math.floor(Math.random() * 6) + -3;
+      fix[7] = Math.floor(Math.random() * 6) + -3;
+      fix[8] = Math.floor(Math.random() * 6) + -3;
+      fix[9] = Math.floor(Math.random() * 6) + -3;
+      setTimeout(firutx, 600)
+    }
+    function firuty() {
+      fiy[0] = Math.floor(Math.random() * 6) + -2;
+      fiy[1] = Math.floor(Math.random() * 6) + -2;
+      fiy[2] = Math.floor(Math.random() * 6) + -2;
+      fiy[3] = Math.floor(Math.random() * 6) + -2;
+      fiy[4] = Math.floor(Math.random() * 6) + -2;
+      fiy[5] = Math.floor(Math.random() * 6) + -3;
+      fiy[6] = Math.floor(Math.random() * 6) + -3;
+      fiy[7] = Math.floor(Math.random() * 6) + -3;
+      fiy[8] = Math.floor(Math.random() * 6) + -3;
+      fiy[9] = Math.floor(Math.random() * 6) + -3;
+      setTimeout(firuty, 800)
+    }
+    firuty()
+    firutx()
+    
+    
+    function plfix() {
+      window.requestAnimationFrame(plfix)
+      posfisx[0] += fix[0]
+      posfisx[1] += fix[1]
+      posfisx[2] += fix[2]
+      posfisx[3] += fix[3]
+      posfisx[4] += fix[4]
+      posfisx[5] += fix[5]
+      posfisx[6] += fix[6]
+      posfisx[7] += fix[7]
+      posfisx[8] += fix[8]
+      posfisx[9] += fix[9]
+    }
+    function plfiy() {
+      window.requestAnimationFrame(plfiy)
+      posfisy[0] += fiy[0]
+      posfisy[1] += fiy[1]
+      posfisy[2] += fiy[2]
+      posfisy[3] += fiy[3]
+      posfisy[4] += fiy[4]
+      posfisy[5] += fiy[5]
+      posfisy[6] += fiy[6]
+      posfisy[7] += fiy[7]
+      posfisy[8] += fiy[8]
+      posfisy[9] += fiy[9]
+    }
+    plfix()
+    plfiy()
+    function runfish() {
+      window.requestAnimationFrame(runfish)
+      c.clearRect(0, 0, 500, 900)
+      c.fillStyle = ' yellow'
+      c.fillRect(posfisx[0], posfisy[0], 20, 10);
+      c.fillRect(posfisx[1], posfisy[1], 20, 10);
+      c.fillRect(posfisx[2], posfisy[2], 20, 10);
+      c.fillRect(posfisx[3], posfisy[3], 20, 10);
+      c.fillRect(posfisx[4], posfisy[4], 20, 10);
+      c.fillRect(posfisx[5], posfisy[5], 20, 10);
+      c.fillRect(posfisx[6], posfisy[6], 20, 10);
+      c.fillRect(posfisx[7], posfisy[7], 20, 10);
+      c.fillRect(posfisx[8], posfisy[8], 20, 10);
+      c.fillRect(posfisx[9], posfisy[9], 20, 10);
+    }
+    runfish()
+    boat()
+    
+    
+    function secur() {
+      window.requestAnimationFrame(secur)
+      posfisx = posfisx.map(value => Math.max(0, value));
+      posfisx = posfisx.map(value => Math.min(430, value));
+      posfisy = posfisy.map(value => Math.max(380, value));
+      posfisy = posfisy.map(value => Math.min(710, value));
+    }
+    secur()
+    function strike() {
+      window.requestAnimationFrame(strike)
+      korx = posfisx.map(element => element >= xboat + 57 && element <= xboat + 62);
+      kory = posfisy.map(element => element >= 345 + valst && element <= 355 + valst)
+      if (korx.indexOf(true) != -1 && kory.indexOf(true) != -1) {
+        if (korx.indexOf(true) == kory.indexOf(true)) {
+          posfisx[kory.indexOf(true)] = 0
+          posfisy[korx.indexOf(true)] = 720
+          if (upn != 1) {
+            upn = 1
+            fish()
+            document.getElementById('fish').style.display = 'none'
+            document.getElementById('range').style.display = 'none'
+            fakeFish()
+            point++
+          }
+        }
+      }
+    }
+    strike()
+    function fakeFish() {
+      window.requestAnimationFrame(fakeFish)
+      if (fcl == 1) {
+        c.fillStyle = 'lightblue'
+      }
+      else {
+        c.fillStyle = 'yellow'
+      }
+      c.fillRect(xboat + 57, 350 + valst, 7, 15)
+    }
+  </script>
+</body>
+
+</html>

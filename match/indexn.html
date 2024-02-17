@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style>
+    html{
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+<center>
+  <h1 id="number"/>
+  <input type="number" name="" id="input">
+  <button onclick="input()">pencet</button>
+  
+  <script>
+  let nub1 = 0
+  let nub2 = 0
+  let play = 0
+  let poin = 0
+  function get(){
+    nub1 = Math.floor(Math.random() * 10) + 1;
+    nub2 = Math.floor(Math.random() * 10) + 1;
+    document.getElementById('number').innerHTML = `${nub1} X ${nub2}`
+    poin = nub1 * nub2
+  }
+  function input(){
+    play = document.getElementById('input').value
+    if(play != poin){
+      document.getElementById('number').innerHTML='salah'
+    }
+    else{
+      document.getElementById('number').innerHTML='benar'
+    }
+  }
+  get()
+  </script>
+</center>
+</body>
+
+</html>
