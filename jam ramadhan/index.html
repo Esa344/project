@@ -37,9 +37,9 @@
     };
     function getLocation() {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(getPosition, getDefault);
+        navigator.geolocation.getCurrentPosition(getPosition, getsetDefault);
       } else {
-        default();
+        setDefault();
       }
     }
     function getPosition(position) {
@@ -56,7 +56,7 @@
           getTimings(daerah);
         })
         .catch(error => {
-          default();
+          setDefault();
         });
     }
     function getTimings(daerah) {
@@ -84,10 +84,10 @@
       document.getElementById('m').innerText = m;
       document.getElementById('lokasi').innerHTML = 'Saat Ini Untuk Daerah <br> ' + daerah
     }
-    function getDefault(error) {
-      default();
+    function getsetDefault(error) {
+      setDefault();
     }
-    function default() {
+    function setDefault() {
       daerah = "Jakarta";
       getTimings(daerah);
     }
@@ -96,6 +96,7 @@
     }
   </script>
 </head>
+
 <body>
   <h1>Jam Imsak, Berbuka, <br> dan solat</h1>
   <div>
@@ -112,4 +113,4 @@
   <h3 id="lokasi">Saat Ini Untuk Daerah</h3>
   <button onclick="resetLokasi()">Kirim Ulang Lokasi</button>
 </body>
-  </html>
+</html>
